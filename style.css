@@ -1,0 +1,651 @@
+/* Default Theme (Calm/Neutral) */
+:root {
+    --accent: #ff85a1;
+    --dark-pink: #db2777;
+    --bg-overlay: rgba(255, 245, 247, 0.8);
+    --text-color: #333;
+}
+
+/* Theme Variations */
+body.theme-energetic {
+    --accent: #ffcc33;
+    --dark-pink: #ff6600;
+    --bg-overlay: rgba(255, 250, 230, 0.7);
+}
+
+body.theme-relaxed {
+    --accent: #b2dfdb;
+    --dark-pink: #00897b;
+    --bg-overlay: rgba(224, 242, 241, 0.8);
+}
+
+body.theme-power {
+    --accent: #9c27b0;
+    --dark-pink: #4a148c;
+    --bg-overlay: rgba(243, 229, 245, 0.7);
+}
+
+body.theme-period {
+    --accent: #ef4444;
+    --dark-pink: #991b1b;
+    --bg-overlay: rgba(254, 242, 242, 0.8);
+}
+
+/* Apply variables to the background */
+body {
+    background-color: var(--bg-overlay);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth color shift */
+}
+
+:root {
+    --accent: #ff85a1;
+    --dark-pink: #db2777;
+    --glass: rgba(255, 255, 255, 0.7);
+}
+
+body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #fff5f7;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.bg-gradient-fixed {
+    position: fixed;
+    top: 0; width: 100vw; height: 100vh;
+    background: radial-gradient(circle at 10% 20%, #ffd1dc 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, #ffc2d1 0%, transparent 40%);
+    z-index: -1;
+}
+
+/* Navbar */
+.pro-nav {
+    display: flex;
+    align-items: center;
+    padding: 20px 60px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* This container holds your links */
+.nav-links {
+    display: flex;
+    flex: 1; /* This tells the links container to take up all available space */
+    justify-content: space-evenly; /* Spreads them perfectly with equal gaps */
+    margin-left: 40px; /* Gap between the Logo and the first link */
+}
+/* Add this to your CSS */
+.nav-links span.current {
+    color: var(--dark-pink);
+    border-bottom: 2px solid var(--dark-pink);
+    padding-bottom: 5px;
+}
+
+.nav-links span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-links span:hover {
+    color: var(--dark-pink);
+}
+
+/* Pages Control */
+.page { display: none; padding: 40px; animation: fadeIn 0.6s ease forwards; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Hero */
+.home-container { display: flex; align-items: center; gap: 50px; padding: 30px; }
+.hero-image img { width: 320px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); animation: float 4s infinite ease-in-out; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* Cards & Calendar */
+.pro-card { background: white; padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 20px 0; }
+.day { padding: 12px; text-align: center; border-radius: 12px; background: #fff; border: 1px solid #f0f0f0; font-weight: 600; }
+.day.period { background: var(--accent); color: white; border: none; }
+
+/* Styles Page */
+.mood-selector { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
+.mood-selector button { padding: 12px 20px; border-radius: 20px; border: 1px solid var(--accent); background: white; cursor: pointer; transition: 0.3s; font-family: inherit; font-weight: 600; }
+.mood-selector button:hover { background: var(--accent); color: white; }
+.color-bubbles { display: flex; gap: 15px; justify-content: center; margin: 20px 0; }
+.bubble { width: 45px; height: 45px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.pro-tip { background: #fff0f3; padding: 20px; border-radius: 20px; font-style: italic; border-left: 5px solid var(--accent); }
+
+/* Flip Grids */
+/* Container for the grids */
+.flip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* The Card Body */
+.flip-card {
+    height: 280px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front & Back Faces */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Front Face Specifics */
+.card-front {
+    background: white;
+}
+
+.card-front img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 12px;
+}
+
+.card-front h4 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    color: var(--dark-pink);
+    font-size: 1.2rem;
+}
+
+/* Back Face Specifics */
+.card-back {
+    background: linear-gradient(135deg, var(--accent), var(--dark-pink));
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.card-back p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* SOS */
+.sos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.sos-tile { background: #fee2e2; border: 2px solid #ef4444; padding: 20px; border-radius: 20px; text-decoration: none; color: #b91c1c; font-weight: 700; transition: 0.3s; text-align: center; }
+.sos-tile:hover { background: #da6ca3; color: white; transform: scale(1.03); }
+/* Full Screen Video Styling */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video fills screen without stretching */
+    z-index: -1; /* Keeps it behind text */
+}
+
+/* Ensure home content sits on top and is readable */
+.overlay-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust height to fit content */
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1); /* Optional: slight tint for readability */
+    backdrop-filter: blur(0px); /* Subtle blur to separate text from video */
+    border-radius: 40px;
+    margin: 20px;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    color: white; /* Changed to white for better contrast over video */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.hero-text p {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    max-width: 600px;
+}/* Apply the clean font to the whole site */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff5f7;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+
+/* Apply the fancy elegant font to Titles and Logos */
+h1, h2, h3, .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic; /* Makes it look even more sophisticated */
+    letter-spacing: 1px;
+}
+
+/* Specific styling for the Main ENORA Title */
+.glow-text {
+    font-size: 5rem;
+    background: linear-gradient(to right, #db2777, #ff85a1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none; /* Removed shadow for cleaner look */
+}
+
+/* Styling the navigation to look chic */
+.nav-links span {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+.home-container {
+    display: flex;
+    justify-content: flex-end; /* Pushes content to the right side */
+    align-items: center;
+    height: 100vh;
+    padding-right: 8%; /* Adjust this to move the text more or less to the right */
+    box-sizing: border-box;
+}
+
+.hero-text {
+    background: none !important; /* Removes the box background */
+    backdrop-filter: none !important; /* Removes the blur box */
+    border: none !important; /* Removes any borders */
+    text-align: right; /* Aligns text lines to the right edge */
+    max-width: 600px;
+}
+
+.hero-text h1 {
+    font-size: 6rem; /* Large, elegant title */
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.3); /* Shadow for readability without a box */
+}
+
+.hero-text .desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333; /* Use white if your video is dark */
+    text-shadow: 1px 1px 10px rgba(255,255,255,0.5); 
+}
+/* Container for the video card */
+.video-card {
+    position: relative;
+    overflow: hidden; /* Clips the video to the card's rounded corners */
+    padding: 0 !important; /* We use card-content for padding instead */
+}
+
+/* The video itself */
+.card-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.6; /* Adjust opacity so it's not too distracting */
+}
+
+/* The content sitting on top of the video */
+.card-content {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.4); /* Glass effect over video */
+    backdrop-filter: blur(8px);
+    height: 100%;
+}
+
+/* Full Screen Page Background Video */
+.page-bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Sits behind everything on the page */
+}
+
+/* Make the Cycle Card "Glassy" so the video peeks through */
+#cycle .pro-card {
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent */
+    backdrop-filter: blur(15px); /* Glassmorphism effect */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-top: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure text is readable over the moving background */
+#cycle .fancy-title, #cycle label {
+    color: #db2777;
+    font-weight: 700;
+}
+
+#cycle .results-banner {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+/* Style Studio Layout */
+.style-studio-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 80vh;
+    align-items: stretch;
+}
+
+/* Sidebar Styling */
+.mood-sidebar {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.mood-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.mood-buttons button {
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    color: #444;
+}
+
+.mood-buttons button:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateX(10px);
+}
+
+/* Main Card Styling */
+.style-main-card {
+    flex: 2;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+}
+
+.style-header h2 {
+    font-size: 3rem;
+    margin: 0;
+    color: var(--dark-pink);
+}
+
+.style-line {
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin: 15px 0 30px 0;
+    border-radius: 2px;
+}
+
+.style-content h4 {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.wardrobe-essentials ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.wardrobe-essentials li {
+    background: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+/* Center the Title and Search Bar */
+.page-header {
+    display: flex;
+    flex-direction: column; /* Stacks title over search bar */
+    align-items: center;    /* Centers them horizontally */
+    text-align: center;
+    margin-bottom: 50px;
+    gap: 20px;
+}
+
+.fancy-title {
+    font-size: 2.5rem;
+    color: var(--dark-pink);
+    margin-bottom: 5px;
+}
+
+/* Centered Search Bar Styling */
+.search-container {
+    width: 100%;
+    max-width: 500px; /* Limits the width so it doesn't stretch too far */
+    display: flex;
+    justify-content: center;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 18px 30px;
+    border-radius: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    font-size: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: center; /* Centers the placeholder text and user input */
+}
+
+.search-container input:focus {
+    background: white;
+    border-color: var(--accent);
+    transform: translateY(-2px); /* Subtle lift effect */
+    box-shadow: 0 15px 35px rgba(255, 133, 161, 0.2);
+}
+
+/* Optional: Add a magnifying glass icon placeholder effect */
+.search-container input::placeholder {
+    color: #999;
+    font-weight: 500;
+}
+/* SOS Background Video */
+#sos .page-bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6) saturate(1.2); /* Darkens video to make numbers pop */
+}
+
+/* Glass Container for Safety */
+.sos-glass-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 40px;
+    padding: 50px;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.emergency-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #fff;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+}
+
+/* Pulsing Red Dot for "Live" Safety feel */
+.emergency-pulse {
+    width: 12px; height: 12px;
+    background: #ef4444;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 0 rgba(255, 171, 231, 0.721);
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(202, 44, 120, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.emergency-subtitle {
+    color: #ffd1dc;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+/* SOS Grid & Tiles */
+.sos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.sos-tile {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s;
+    border-left: 8px solid #ef4444;
+}
+
+.sos-tile:hover {
+    transform: scale(1.05);
+    background: #fff;
+}
+
+.sos-icon { font-size: 2rem; margin-right: 20px; }
+
+.sos-info { display: flex; flex-direction: column; text-align: left; }
+
+.sos-label {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.sos-number {
+    font-size: 1.5rem;
+    color: #b91c1c;
+    font-weight: 800;
+}
+/* 1. Define the Animation */
+@keyframes pageTransition {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Starts slightly lower */
+        filter: blur(5px);           /* Optional: soft blur for elegance */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);    /* Slides into position */
+        filter: blur(0);
+    }
+}
+
+/* 2. Apply it to the active page */
+.page.active {
+    display: block !important;
+    animation: pageTransition 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    /* cubic-bezier makes the movement feel "organic" and smooth */
+}
+
+/* 3. Smooth out the background video transitions */
+.page-bg-video {
+    transition: opacity 0.8s ease-in-out;
+}
+.theme-switcher {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px 15px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.theme-switcher button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-switcher button:hover {
+    transform: scale(1.3) rotate(15deg);
+}

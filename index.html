@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENORA | Your Feminine Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-gradient-fixed"></div>
+
+    <nav class="pro-nav">
+        <div class="logo">ENORA</div>
+        <div class="nav-links">
+            <span onclick="showPage('home')">Home</span>
+            <span onclick="showPage('cycle')">Cycle</span>
+            <span onclick="showPage('style')">Style</span>
+            <span onclick="showPage('skin')">Skin</span>
+            <span onclick="showPage('learn')">Learn</span>
+            <span onclick="showPage('sos')">SOS</span>
+        </div>
+        <div class="theme-switcher">
+    <button onclick="changeTheme('default')" title="Default">🌸</button>
+    <button onclick="changeTheme('energetic')" title="Energetic">⚡</button>
+    <button onclick="changeTheme('relaxed')" title="Relaxed">🧘</button>
+    <button onclick="changeTheme('power')" title="Power">👑</button>
+    <button onclick="changeTheme('period')" title="Period/Comfort">❤️</button>
+</div>
+    </nav>
+
+    <main id="app-viewport">
+       <section id="home" class="page active">
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="C:\Users\Sreyas\girl\Pink and White Dreamy Illustration Quote Desktop Wallpaper .mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="home-container overlay-content">
+        <div class="hero-text">
+            <h1 class="glow-text">ENORA</h1>
+            <p class="tagline">Your calm, caring companion 🌸</p>
+            <p class="desc">A gentle space made just for you — to talk, to feel, and to be heard. ENORA is here to listen without judgment and walk beside you through every emotion.</p>
+        </div>
+    </div>
+</section>
+       <section id="cycle" class="page">
+    <video autoplay muted loop playsinline class="page-bg-video">
+        <source src="C:\Users\Sreyas\girl\Pink Grey Peach Brown Purple Simple Minimalist Aesthetic Anime Girl 90s Sad Love Quotes Desktop Wallpaper.mp4" type="video/mp4">
+    </video>
+
+    <div class="pro-card cycle-app">
+        <h2 class="fancy-title">🌸 Cycle Tracker</h2>
+        <div class="input-group">
+            <label>When did your last period start?</label>
+            <input type="date" id="period-start" onchange="calculateCycle()">
+        </div>
+        
+        <div class="calendar-container">
+            <div class="calendar-header">February 2026</div>
+            <div class="calendar-grid" id="calendar"></div>
+        </div>
+
+        <div id="cycle-results" class="results-banner">
+            <p>Next period: <span id="next-date">---</span></p>
+            <p class="countdown" id="days-countdown">Enter your date above 💗</p>
+        </div>
+    </div>
+</section>
+
+        <section id="style" class="page">
+    <video autoplay muted loop playsinline class="page-bg-video">
+        <source src="C:\Users\Sreyas\girl\pink.mp4" type="video/mp4">
+    </video>
+
+    <div class="style-studio-container">
+        <aside class="mood-sidebar">
+            <h3>How are you feeling?</h3>
+            <div class="mood-buttons">
+                <button onclick="selectMood('Happy')"><span>😊</span> Happy</button>
+                <button onclick="selectMood('Sad')"><span>😢</span> Sad</button>
+                <button onclick="selectMood('Confident')"><span>💪</span> Confident</button>
+                <button onclick="selectMood('Calm')"><span>🧘</span> Calm</button>
+                <button onclick="selectMood('Romantic')"><span>💕</span> Romantic</button>
+                <button onclick="selectMood('Energetic')"><span>⚡</span> Energetic</button>
+            </div>
+        </aside>
+
+        <div id="style-display" class="style-main-card">
+            <div class="style-header">
+                <h2 id="style-mood-name">Happy Vibes</h2>
+                <div class="style-line"></div>
+            </div>
+            
+            <div class="style-content">
+                <div class="palette-section">
+                    <h4>Recommended Palette</h4>
+                    <div class="color-bubbles" id="style-colors"></div>
+                </div>
+                
+                <div class="tip-section">
+                    <h4>Style Insight</h4>
+                    <p id="style-description" class="pro-tip">Select a mood to reveal your personalized style guide.</p>
+                </div>
+
+                <div class="wardrobe-essentials">
+                    <h4>Wardrobe Essentials</h4>
+                    <ul id="essentials-list">
+                        <li>Flowy Skirts</li>
+                        <li>Bright Accessories</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="skin" class="page">
+    <div class="page-header">
+        <h2>✨ Skin Sanctuary</h2>
+        <div class="search-container">
+            <input type="text" id="skin-search" placeholder="Search skin concerns (e.g. Acne, Dry)..." onkeyup="filterGrid('skin-grid', 'skin-search', skinData)">
+        </div>
+    </div>
+    <div class="flip-grid" id="skin-grid"></div>
+</section>
+
+        <section id="learn" class="page">
+    <div class="page-header">
+        <h2>📖 Flip & Learn</h2>
+        <div class="search-container">
+            <input type="text" id="learn-search" placeholder="Search products (e.g. Cup, Pad)..." onkeyup="filterGrid('learn-grid', 'learn-search', learnData)">
+        </div>
+    </div>
+    <div class="flip-grid" id="learn-grid"></div>
+</section>
+
+        <section id="sos" class="page">
+    <video autoplay muted loop playsinline class="page-bg-video">
+        <source src="pink3.mp4" type="video/mp4">
+    </video>
+
+    <div class="sos-pro-layout">
+        <div class="sos-glass-container">
+            <div class="sos-header">
+                <h2 class="emergency-title">SOS SAFETY</h2>
+                <div class="emergency-pulse"></div>
+                <p class="emergency-subtitle">Immediate danger? Call 112 right away.</p>
+            </div>
+            
+            <div class="sos-grid">
+                <a href="tel:181" class="sos-tile">
+                    <span class="sos-icon">📞</span>
+                    <div class="sos-info">
+                        <span class="sos-label">Women Helpline</span>
+                        <span class="sos-number">181</span>
+                    </div>
+                </a>
+                <a href="tel:1091" class="sos-tile">
+                    <span class="sos-icon">🚔</span>
+                    <div class="sos-info">
+                        <span class="sos-label">Police Emergency</span>
+                        <span class="sos-number">1091</span>
+                    </div>
+                </a>
+                <a href="tel:1098" class="sos-tile">
+                    <span class="sos-icon">🧸</span>
+                    <div class="sos-info">
+                        <span class="sos-label">Childline</span>
+                        <span class="sos-number">1098</span>
+                    </div>
+                </a>
+                <a href="tel:102" class="sos-tile">
+                    <span class="sos-icon">🚑</span>
+                    <div class="sos-info">
+                        <span class="sos-label">Ambulance</span>
+                        <span class="sos-number">102</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
